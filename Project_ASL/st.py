@@ -1,12 +1,10 @@
 import streamlit as st
+import tensorflow as tf
 from PIL import Image
 import numpy as np
 
 
 from util import classify
-
-
-
 
 st.title('ASL alphabet')
 
@@ -14,7 +12,7 @@ st.header('Please upload an image ')
 
 file = st.file_uploader('', type=['jpeg', 'jpg', 'png'])
 
-model = load_model('Efficientnet_ASL_alphabet_detection.h5')
+model = tf.keras.models.load_model('Efficientnet_ASL_alphabet_detection.h5')
 
 with open('labels.txt', 'r') as f:
     class_names = [a[:-1].split(' ')[1] for a in f.readlines()]
